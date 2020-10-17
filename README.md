@@ -1,2 +1,12 @@
 # TRASH
-TRASH: The Really Awful Simulation of (poly)Hedrons - a working but pretty bad game engine, that is, once it get's to a working state...
+TRASH: The Really Awful/Awesome Simulation of polyHedrons - a working but pretty bad/good game engine, that is, once it gets to a working state...
+
+This is an engine that is in a quantum state. Its true quality is only known to those who observe and interact with it.
+
+## Purpose
+
+Yet another engine. I know. But I think computer graphics are cool and building an engine, even if it's bad or no better than quake 2 or something, will be a very good learning experience.
+
+## Thoughts
+
+Initially, I need to create a design document or something similar which encompasses all of the needed and wanted features of the engine. Once that's complete, architecture of the engine must be thoroughly thought about and architected as to make sure these things are not questions mid-way through development. Initial thoughts are a message based system which talks to a lower level decoupled framework which is composed of individual pieces that deal with raw attributes such as audio, graphics rendering, model loading, physics, AI, input, networking, and so on. This framework will live as a single "core" package of the engine, with no component having direct reference of the other. The only way anything will be able to communicate is through a message bus which may lead to a service oriented architecture, that is, the core and its individual pieces will act as services for the overall engine, communicating with each other and overall managed by a high level service broker. This service broker is, in itself, a game-manager which deals with knowing the state of the system and acting upon it in the way the game-scene scripts dictate in relation to other factors such as current physics simulation, AI states, and user-input. If all systems are set up to dance with each other in this laid out and strict fashion, the overall system should remain stable, and easy to manage and scale during programing. This should make it easier to maintain and extend in the future with more features and additions. Another benefit is that individual core components will also be able to work on separate threads, meaning multi-core processors should be able to to be utilized well as calculations work in parallel. The messaging system will ensure no component will work out of order as well as components will wait from messages from each other during a rendering frame.
